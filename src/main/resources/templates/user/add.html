@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <title>Title</title>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <title>Sign Up</title>
 </head>
-<body>
-<h2 th:text="${error}"></h2>
-<form method="post" action="/user/add">
-    <div>
-        <label>
-            <input type="text" name="username" th:value="${username}" placeholder="username">
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="password" name="password" placeholder="password">
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="password" name="verify" placeholder="re enter password">
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="email" name="email" th:value="${email}" placeholder="email">
-        </label>
-    </div>
-    <div>
-        <input type="submit" value="Create User">
-    </div>
-</form>
 
+<body>
+    <form method="post" th:action="@{/user}">
+        <label>
+            Username:
+            <input type="text" th:field="${user.username}">
+            <p th:errors="${user.username}" class="alert alert-warning"></p>        </p>
+        </label>
+
+        <label>
+            Email:
+            <input th:field="${user.email}">
+            <p th:errors="${user.email}" class="alert alert-warning"></p>
+        </label>
+
+        <label>
+            Password:
+            <input type="password" th:field="${user.password}">
+            <p th:errors="${user.password}" class="alert alert-warning"></p>        </p>
+        </label>
+
+        <label>
+            Verify Password:
+            <input type="password" th:field="${user.verify}">
+            <p th:errors="${user.verify}" class="alert alert-warning"></p>
+        </label>
+
+        <input type="submit" value="Sign Up">
+    </form>
 </body>
 </html>
